@@ -1,7 +1,11 @@
+import csv
+import heapq
 import random
-from colorama import init, Fore
-from collections import deque
+import statistics
+from colorama import Fore
 from queue import Queue
+
+from matplotlib import pyplot as plt
 
 
 class GridEnvironment:
@@ -61,29 +65,51 @@ class GridEnvironment:
         return None, nodes_visited  # No se encontró un camino válido, pero se devuelve la cantidad de nodos visitados
 
     def dfs(self, max_depth=float('inf')):
-        stack = deque([(self.start, [])])   # Usamos una pila y cada elemento es una tupla (posición, camino)
-        shortest_path = None
-        shortest_path_length = float('inf')
-        nodes_visited = 0
+        visited = [[False for _ in range(self.size)] for _ in range(self.size)]
+        stack = [(self.start, [])]  # Utilizamos una pila en lugar de una cola para DFS
+        nodes_visited = 0  # Contador de nodos visitados
 
         while stack:
             current, moves = stack.pop()
-            nodes_visited += 1
+            nodes_visited += 1  # Incrementa el contador de nodos visitados
 
             if current == self.goal:
-                if len(moves) < shortest_path_length:
-                    shortest_path_length = len(moves)
-                    shortest_path = moves  # Actualiza el camino más corto
+                return moves, nodes_visited  # Devuelve el camino y la cantidad de nodos visitados si llega al destino
 
-            if len(moves) < shortest_path_length and len(moves) < max_depth:
+            visited[current[0]][current[1]] = True
+
+            for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+                new_x, new_y = current[0] + dx, current[1] + dy
+                if self.is_valid_move(new_x, new_y) and not visited[new_x][new_y] and len(moves) < max_depth:
+                    new_moves = moves + [(new_x, new_y)]  # Agrega el nuevo movimiento
+                    stack.append(((new_x, new_y), new_moves))
+
+        return None, nodes_visited  # No se encontró un camino válido, pero se devuelve la cantidad de nodos visitados
+
+    def uniform_cost_search(self):
+        visited = [[False for _ in range(self.size)] for _ in range(self.size)]
+        priority_queue = [(0, self.start, [])]  # Utilizamos una cola de prioridad (heap) para UCS
+        nodes_visited = 0  # Contador de nodos visitados
+    
+        while priority_queue:
+            cost, current, moves = heapq.heappop(priority_queue)
+            nodes_visited += 1  # Incrementa el contador de nodos visitados
+    
+            if current == self.goal:
+                return moves, nodes_visited  # Devuelve el camino y la cantidad de nodos visitados si llega al destino
+    
+            if not(visited[current[0]][current[1]]):
+
+                visited[current[0]][current[1]] = True
+
                 for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
                     new_x, new_y = current[0] + dx, current[1] + dy
-                    new_position = (new_x, new_y)
-                    if self.is_valid_move(new_x, new_y) and new_position not in moves:
-                        new_moves = moves + [new_position]  # Agrega el nuevo movimiento
-                        stack.append((new_position, new_moves))
-
-        return shortest_path, nodes_visited
+                    if self.is_valid_move(new_x, new_y) and not visited[new_x][new_y]:
+                        new_cost = cost + 1  # Costo uniforme
+                        new_moves = moves + [(new_x, new_y)]  # Agrega el nuevo movimiento
+                        heapq.heappush(priority_queue, (new_cost, (new_x, new_y), new_moves))
+    
+        return None, nodes_visited  # No se encontró un camino válido, pero se devuelve la cantidad de nodos visitados
 
     def print_grid(self, path):
         for y in range(self.size):
@@ -99,30 +125,99 @@ class GridEnvironment:
                 else:
                     print(Fore.WHITE + ".", end=" ")
             print()
+    @staticmethod
+    def print_plotbox(result: dict):
+
+        fig, ax = plt.subplots()
+        ax.boxplot(
+            results.values(),
+            labels=results.keys(),
+            showmeans=True,
+        )
+
+        # Agregar título y etiquetas de ejes
+        plt.title("Algoritmos de Búsqueda")
+        plt.xlabel("Algoritmo de Búsqueda")
+        plt.ylabel("Cantidad de Nodos Explorados")
+
+        # Mostrar el gráfico
+        plt.tight_layout()
+        plt.show()
+
+        print(f"Promedio de nodos visitados con BFS: {statistics.mean(result['BFS'])}")
+        print(f"Desviación estándar de nodos visitados con BFS: {statistics.stdev(result['BFS'])}")
+
+        print(f"Promedio de nodos visitados con DFS: {statistics.mean(result['DFS'])}")
+        print(f"Desviación estándar de nodos visitados con DFS: {statistics.stdev(result['DFS'])}")
+
+        print(f"Promedio de nodos visitados con DFS con profundidad limitada: {statistics.mean(result['DFS Limitado'])}")
+        print(f"Desviación estándar de nodos visitados con DFS con profundidad limitada: {statistics.stdev(result['DFS Limitado'])}")
+
+        print(f"Promedio de nodos visitados con UCS: {statistics.mean(result['UCS'])}")
+        print(f"Desviación estándar de nodos visitados con UCS: {statistics.stdev(result['UCS'])}")
 
     @staticmethod
     def execute(attempts):
-        for i in range(attempts):
-            size = 30
-            obstacle_percentage = 8
-            env = GridEnvironment(size, obstacle_percentage)
 
-            path_bfs, nodes_visited_bfs = env.bfs()
+        bfs = ([], [])
+        dfs = ([], [])
+        dfs_limited = ([], [])
+        ucs = ([], [])
 
-            if path_bfs:
-                env.print_grid(path_bfs)
-                print(f"Cantidad de nodos visitados con BFS: {nodes_visited_bfs}")
-            else:
-                print("No se encontró un camino válido con BFS.")
+        with open("C:\\Users\\Facu\\PycharmProjects\\ia-uncuyo-2023\\tp3-busquedas-no-informadas\\results.csv", "w", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerow(["Algorithm_name", "env_n", "estates_n", "solution_found"])
+            for i in range(attempts):
+                size = 100
+                obstacle_percentage = 8
+                env = GridEnvironment(size, obstacle_percentage)
 
-            path_dfs, nodes_visited_dfs = env.dfs(size)
+                # Guardo los resultados de cada algoritmo en una lista para luego calcular el promedio y desviación estándar
+                bfs_path, nodes_visited_bfs = env.bfs()
+                bfs_solution = True
+                if bfs_path is None:
+                    bfs_path = []
+                    bfs_solution = False
+                bfs[0].append(bfs_path)
+                bfs[1].append(nodes_visited_bfs)
+                writer.writerow(["BFS", i, bfs[1][i], bfs_solution])
 
-            if path_dfs:
-                env.print_grid(path_dfs)
-                print(f"Cantidad de nodos visitados con DFS: {nodes_visited_dfs}")
-            else:
-                print("No se encontró un camino válido con DFS.")
+                dfs_path, nodes_visited_dfs = env.dfs()
+                dfs_solution = True
+                if dfs_path is None:
+                    dfs_path = []
+                    dfs_solution = False
+                dfs[0].append(dfs_path)
+                dfs[1].append(nodes_visited_dfs)
+                writer.writerow(["DFS", i, dfs[1][i], dfs_solution])
+
+                dfs_limited_path, nodes_visited_dfs_limited = env.dfs(1000)
+                dfs_limited_solution = True
+                if dfs_limited_path is None:
+                    dfs_limited_path = []
+                    dfs_limited_solution = False
+                dfs_limited[0].append(dfs_limited_path)
+                dfs_limited[1].append(nodes_visited_dfs_limited)
+                writer.writerow(["DFS Limitado", i, dfs_limited[1][i], dfs_limited_solution])
+
+                ucs_path, nodes_visited_ucs = env.uniform_cost_search()
+                ucs_solution = True
+                if ucs_path is None:
+                    ucs_path = []
+                    ucs_solution = False
+                ucs[0].append(ucs_path)
+                ucs[1].append(nodes_visited_ucs)
+                writer.writerow(["UCS", i, ucs[1][i], ucs_solution])
+
+        results = {
+            "BFS": bfs[1],
+            "DFS": dfs[1],
+            "DFS Limitado": dfs_limited[1],
+            "UCS": ucs[1],
+        }
+        return results
 
 
 if __name__ == "__main__":
-    GridEnvironment.execute(1)
+    results = GridEnvironment.execute(30)
+    GridEnvironment.print_plotbox(results)

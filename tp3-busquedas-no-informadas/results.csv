@@ -1,0 +1,121 @@
+Algorithm_name,env_n,estates_n,solution_found
+BFS,0,7192,True
+DFS,0,8180,True
+DFS Limitado,0,12836,True
+UCS,0,13230,True
+BFS,1,1453,True
+DFS,1,6975,True
+DFS Limitado,1,11236,True
+UCS,1,2556,True
+BFS,2,4188,True
+DFS,2,7096,True
+DFS Limitado,2,9295,False
+UCS,2,7641,True
+BFS,3,3079,True
+DFS,3,4695,True
+DFS Limitado,3,8132,True
+UCS,3,5475,True
+BFS,4,4053,True
+DFS,4,4899,True
+DFS Limitado,4,6472,False
+UCS,4,7426,True
+BFS,5,8576,True
+DFS,5,6194,True
+DFS Limitado,5,4410,False
+UCS,5,15662,True
+BFS,6,7559,True
+DFS,6,7347,True
+DFS Limitado,6,5726,False
+UCS,6,13775,True
+BFS,7,7349,True
+DFS,7,5152,True
+DFS Limitado,7,8086,True
+UCS,7,13358,True
+BFS,8,3571,True
+DFS,8,3867,True
+DFS Limitado,8,4879,True
+UCS,8,6448,True
+BFS,9,7191,True
+DFS,9,968,True
+DFS Limitado,9,968,True
+UCS,9,13109,True
+BFS,10,8782,True
+DFS,10,7429,True
+DFS Limitado,10,8336,False
+UCS,10,16055,True
+BFS,11,7957,True
+DFS,11,7654,True
+DFS Limitado,11,7613,False
+UCS,11,14454,True
+BFS,12,4166,True
+DFS,12,765,True
+DFS Limitado,12,765,True
+UCS,12,7444,True
+BFS,13,6307,True
+DFS,13,7892,True
+DFS Limitado,13,7846,False
+UCS,13,11623,True
+BFS,14,7627,True
+DFS,14,7326,True
+DFS Limitado,14,11057,False
+UCS,14,13911,True
+BFS,15,2958,True
+DFS,15,4518,True
+DFS Limitado,15,4379,True
+UCS,15,5374,True
+BFS,16,8948,True
+DFS,16,1647,True
+DFS Limitado,16,1866,True
+UCS,16,16337,True
+BFS,17,7079,True
+DFS,17,3033,True
+DFS Limitado,17,4440,True
+UCS,17,12821,True
+BFS,18,3397,True
+DFS,18,7181,True
+DFS Limitado,18,8112,False
+UCS,18,6299,True
+BFS,19,7340,True
+DFS,19,5563,True
+DFS Limitado,19,8837,True
+UCS,19,13479,True
+BFS,20,6528,True
+DFS,20,3665,True
+DFS Limitado,20,10817,False
+UCS,20,11958,True
+BFS,21,1643,True
+DFS,21,4088,True
+DFS Limitado,21,6335,True
+UCS,21,2942,True
+BFS,22,1277,True
+DFS,22,6156,True
+DFS Limitado,22,8312,True
+UCS,22,2214,True
+BFS,23,152,True
+DFS,23,15353,True
+DFS Limitado,23,1567,True
+UCS,23,259,True
+BFS,24,6487,True
+DFS,24,2077,True
+DFS Limitado,24,2177,True
+UCS,24,11939,True
+BFS,25,429,True
+DFS,25,2373,True
+DFS Limitado,25,2980,True
+UCS,25,801,True
+BFS,26,1579,True
+DFS,26,3557,True
+DFS Limitado,26,5571,True
+UCS,26,2903,True
+BFS,27,5312,True
+DFS,27,6414,True
+DFS Limitado,27,7245,False
+UCS,27,9762,True
+BFS,28,4879,True
+DFS,28,5423,True
+DFS Limitado,28,8302,True
+UCS,28,8840,True
+BFS,29,8380,True
+DFS,29,1255,True
+DFS Limitado,29,1495,True
+UCS,29,15260,True
