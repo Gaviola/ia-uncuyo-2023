@@ -1,0 +1,16 @@
+Algorithm_name,Cost,States,Solution_found,Time
+Hill Climbing,1,280,False,0.00396275520324707
+Simulated Annealing,0,337,True,0.0050334930419921875
+Genetic Algorithm,1,1000,False,1.8500289916992188
+Hill Climbing,2,280,False,0.003998756408691406
+Simulated Annealing,0,547,True,0.008994579315185547
+Genetic Algorithm,1,1000,False,1.628221035003662
+Hill Climbing,1,224,False,0.002997875213623047
+Simulated Annealing,0,114,True,0.0019991397857666016
+Genetic Algorithm,1,1000,False,1.9859633445739746
+Hill Climbing,1,224,False,0.003997087478637695
+Simulated Annealing,1,1000,False,0.02199268341064453
+Genetic Algorithm,1,1000,False,2.378032684326172
+Hill Climbing,1,224,False,0.0039975643157958984
+Simulated Annealing,0,281,True,0.005997180938720703
+Genetic Algorithm,1,1000,False,2.362309455871582
