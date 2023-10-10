@@ -263,7 +263,7 @@ def execute(attempts):
     sizes = [4, 8, 10, 12, 15]
     all_size_result = []
     with open(
-        "C:\\Users\\Facu\\PycharmProjects\\ia-uncuyo-2023\\tp5-busquedas-locales\\results.csv",
+            "/tp5-busquedas-locales/results.csv",
         "w",
         newline="",
     ) as file:
