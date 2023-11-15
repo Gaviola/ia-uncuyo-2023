@@ -13,9 +13,17 @@ ya que no son importantes para describir las caracteristicas de un arbol y las v
 
 ## B) Resultados sobre conjuntos de validacion
 
+Caracteristicas del modelo generado:
+
 <img src="C:\Users\Facu\PycharmProjects\ia-uncuyo-2023\ tp7-ml\graficos\resultados_arboleda.png"/>
 
-## C) Resultados de Kaggle
+<img src="C:\Users\Facu\PycharmProjects\ia-uncuyo-2023\ tp7-ml\graficos\resultados_predicciones.png"/>
+
+En la imagen superior se mostraron los primeros 30 resultados de las predicciones realizadas por el modelo aunque 
+todavia no se realizaron las transformaciones de las probabilidades en 1 y 0, ni tampoco se encuentra con el formato
+de entrega para la competicion.
+
+## C) Resultados sobre Kaggle
 
 <img src="C:\Users\Facu\PycharmProjects\ia-uncuyo-2023\ tp7-ml\graficos\resultados_kaggle.png"/>
 

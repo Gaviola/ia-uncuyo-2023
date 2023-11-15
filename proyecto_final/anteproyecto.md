@@ -49,7 +49,7 @@ Para la evaluacion del desempeño de los algoritmos se utilizaran las siguientes
 
 Se evaluaran especificamente sensibilidad y especificidad, ya que se busca que el modelo pueda predecir correctamente ya
 que se consigue un mayor valor al lograr predecir si un equipo logra la victorio o es derrotado que si se predice
-incorrectamente. Tam
+incorrectamente.
 
 ## Justificación
 La predicción del resultado de una partida implica considerar una amplia gama de factores y variables que resultan 

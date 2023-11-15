@@ -2,8 +2,8 @@ library(randomForest)
 library(dplyr)
 
 #cargo los datos
-data <- read.csv("Data/arbolado-mza-dataset.csv")
-data_test <- read.csv("Data/arbolado-mza-dataset-test.csv")
+data <- read.csv(" tp7-ml/data/arbolado-mza-dataset.csv/arbolado-mza-dataset.csv")
+data_test <- read.csv(" tp7-ml/data/arbolado-mza-dataset-test.csv/arbolado-mza-dataset-test.csv")
 
 # Filtrar todos los arboles con inclinacion peligrosa
 muestra_inclinacion_peligrosa <- data[data$inclinacion_peligrosa == 1, ]
@@ -29,6 +29,9 @@ respuesta <- data_filtrado$inclinacion_peligrosa
 modelo <- randomForest(x = predictores, y = respuesta, ntree = 700, mtry = 6, classwt = matriz_costo)
 
 predictions <- predict(modelo, newdata = data_test)
+
+head(predictions, 30)
+summary(predictions)
 
 predicciones_transformadas <- ifelse(predictions >= 0.5, 1, 0)
 
