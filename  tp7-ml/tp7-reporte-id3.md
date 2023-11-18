@@ -1,7 +1,7 @@
 ## A. Resultados sobre la evaluación sobre tennis.csv
 El resultado obtenido aplicando el algoritmo de arboles de decision utilizando el dataset tennis.csv es el siguiente:
 
-<img src="C:\Users\Facu\PycharmProjects\ia-uncuyo-2023\ tp7-ml\graficos\arbol_tennis.png"/>
+![](C:\Users\Facu\PycharmProjects\ia-uncuyo-2023\ tp7-ml\graficos\arbol_tennis.png)
 
 ## B. información sobre las estrategias para datos de tipo real
 

@@ -68,6 +68,10 @@ en comparación con un programa tradicional.
 8. Análisis de los resultados [1 dia]
 9. Optimización del código [2 dias]
 
+## Diagrama de Gantt
+![](C:\Users\Facu\PycharmProjects\ia-uncuyo-2023\proyecto_final\diagrama_gantt.png)
+
+
 ## Papers o Referencias
 https://www.researchgate.net/publication/353766670_Using_Machine_Learning_to_Predict_Game_Outcomes_Based_on_Player-Champion_Experience_in_League_of_Legends
 https://www.researchgate.net/publication/358824595_Machine_Learning_Methods_for_Predicting_League_of_Legends_Game_Outcome
